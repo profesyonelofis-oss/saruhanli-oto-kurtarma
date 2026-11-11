@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-<link rel="preload" href="fonts/InterTight-300_800-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/saruhanli-oto-kurtarma/fonts/InterTight-300_800-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Saruhanlı Oto Kurtarma · O-5 çekici 7/24 · 0507 129 94 39</title>
@@ -21,7 +21,7 @@
 
 
 <style>
-@font-face{font-family:"Inter Tight";src:url(fonts/InterTight-300_800-normal-latin.woff2) format("woff2");font-display:optional;font-weight:300 800}
+@font-face{font-family:"Inter Tight";src:url(/saruhanli-oto-kurtarma/fonts/InterTight-300_800-normal-latin.woff2) format("woff2");font-display:optional;font-weight:300 800}
 :root{--bg:#0b0f0d;--ink:#f4f1e8;--dim:#93a399;--lime:#d9ff57;--line:rgba(244,241,232,.14);--soft:rgba(244,241,232,.055);--serif:"Instrument Serif",Georgia,serif;--sans:"Inter Tight",system-ui,-apple-system,"Segoe UI",Arial,sans-serif}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -214,7 +214,7 @@ p,li,.lead,.chip,.kicker,.eyebrow,.idx,.row__d,.row__n,.meta,.film__foot{overflo
 <main>
   <section class="hero">
     <div class="hero__marka" aria-hidden="true">
-      <video class="hero__video" width="1080" height="1350" poster="img/hero-1.jpg"
+      <video class="hero__video" width="1080" height="1350" poster="/saruhanli-oto-kurtarma/img/hero-1.jpg"
         muted autoplay playsinline preload="none" tabindex="-1"></video>
       <span class="hero__marka-mono">SO</span>
       <span class="hero__marka-serit"></span>
@@ -504,8 +504,8 @@ p,li,.lead,.chip,.kicker,.eyebrow,.idx,.row__d,.row__n,.meta,.film__foot{overflo
 (function () {
   var v = document.querySelector('.hero__video');
   if (!v) return;
-  var klipler = ['img/hero-1.mp4'];
-  var kapaklar = ['img/hero-1.jpg'];
+  var klipler = ['/saruhanli-oto-kurtarma/img/hero-1.mp4'];
+  var kapaklar = ['/saruhanli-oto-kurtarma/img/hero-1.jpg'];
   var i = 0, basladi = false;
   if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   v.loop = klipler.length === 1;   /* tek sahne varsa kesintisiz dongu */
