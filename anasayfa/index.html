@@ -170,7 +170,7 @@ ol,ul{list-style:none}
   background:var(--acid);box-shadow:0 0 0 5px rgba(217,255,87,.1)}
 .stop b{display:block;font-family:var(--serif);font-size:clamp(22px,2.4vw,34px);font-weight:400;line-height:1.1}
 .stop small{display:block;margin-top:8px;font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;
-  text-transform:uppercase;color:rgba(242,238,227,.45)}
+  text-transform:uppercase;color:rgba(242,238,227,.62)}
 
 /* rakamlar */
 .numbers{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
@@ -193,7 +193,7 @@ ol,ul{list-style:none}
 .contact__row{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
 .contact__meta{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-top:clamp(48px,8vh,90px);
   padding-top:20px;border-top:1px solid var(--rule-d);font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;
-  text-transform:uppercase;color:rgba(242,238,227,.45)}
+  text-transform:uppercase;color:rgba(242,238,227,.62)}
 .contact__meta a:hover{color:var(--bone)}
 
 /* reveal */
@@ -270,7 +270,7 @@ p,li,.lead,.chip,.kicker,.eyebrow,.idx,.row__d,.row__n,.meta,.film__foot{overflo
 <div class="grain" aria-hidden="true"></div>
 
 <header class="hd" id="hd">
-  <a class="hd__brand" href="#top" aria-label="Saruhanlı Oto Kurtarma">
+  <a class="hd__brand" href="#top">
     <span class="hd__dot" aria-hidden="true"></span>
     <span class="hd__name">Saruhanlı<small>OTO KURTARMA</small></span>
   </a>
@@ -287,7 +287,7 @@ p,li,.lead,.chip,.kicker,.eyebrow,.idx,.row__d,.row__n,.meta,.film__foot{overflo
   <!-- ============ FİLM ============ -->
   <section class="film" id="film" aria-label="Çekici filmi">
     <div class="film__pin">
-      <div class="film__yt" aria-hidden="true"><video src="/saruhanli-oto-kurtarma/img/hero-1.mp4" poster="/saruhanli-oto-kurtarma/img/hero-1.jpg"
+      <div class="film__yt" aria-hidden="true"><video data-src="/saruhanli-oto-kurtarma/img/hero-1.mp4" poster="/saruhanli-oto-kurtarma/img/hero-1.jpg"
         muted loop playsinline preload="none" tabindex="-1"></video></div>
       <div class="film__scrim" aria-hidden="true"></div>
 
@@ -524,8 +524,14 @@ p,li,.lead,.chip,.kicker,.eyebrow,.idx,.row__d,.row__n,.meta,.film__foot{overflo
     if(!v){ filmHazir(); return; }
     var yavas = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
     if(yavas || (navigator.connection && navigator.connection.saveData)){ filmHazir(); return; }
-    var p = v.play();
-    if(p && p.then){ p.then(filmHazir).catch(filmHazir); } else { filmHazir(); }
+    function oynat(){
+      if(!v.getAttribute('src') && v.dataset.src) v.setAttribute('src', v.dataset.src);
+      var p = v.play();
+      if(p && p.then){ p.then(filmHazir).catch(filmHazir); } else { filmHazir(); }
+    }
+    // Video dosyası ilk boyamadan sonra indirilir; kapak görseli LCP olarak kalır.
+    if(document.readyState === 'complete') setTimeout(oynat, 500);
+    else addEventListener('load', function(){ setTimeout(oynat, 500); }, {once:true});
     setTimeout(filmHazir, 2500);
   })();
 
